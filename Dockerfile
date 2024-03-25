@@ -4,10 +4,10 @@
 
 FROM python:3.11.0-bullseye AS build_deps
 LABEL pav_stage=build_deps
-RUN apt-get update && apt-get -y upgrade && \
-	apt-get install -y build-essential git && \
-	apt-get clean && apt-get purge && \
-	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN apt-get update && apt-get -y upgrade && \
+# 	apt-get install -y build-essential git && \
+# 	apt-get clean && apt-get purge && \
+# 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PAV_BASE=/opt/pav
 
@@ -37,7 +37,7 @@ COPY files/ ${PAV_BASE}/files/
 COPY scripts/ ${PAV_BASE}/scripts/
 COPY dep/ ${PAV_BASE}/dep/
 WORKDIR ${PAV_BASE}/dep/
-git clone --recursive https://github.com/EichlerLab/svpop.git
+RUN git clone --recursive https://github.com/EichlerLab/svpop.git
 WORKDIR ${PAV_BASE}
 COPY pavlib/ ${PAV_BASE}/pavlib/
 COPY rules/ ${PAV_BASE}/rules/
