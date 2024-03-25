@@ -4,6 +4,10 @@
 
 FROM python:3.11.0-bullseye AS build_deps
 LABEL pav_stage=build_deps
+RUN apt-get update && apt-get -y upgrade && \
+	apt-get install -y build-essential git && \
+	apt-get clean && apt-get purge && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PAV_BASE=/opt/pav
 
