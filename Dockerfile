@@ -38,6 +38,7 @@ COPY scripts/ ${PAV_BASE}/scripts/
 COPY dep/ ${PAV_BASE}/dep/
 WORKDIR ${PAV_BASE}/dep/
 RUN git clone --recursive https://github.com/EichlerLab/svpop.git
+WORKDIR ${PAV_BASE}/dep/svpop/
 RUN git checkout bbbfc9d
 WORKDIR ${PAV_BASE}
 COPY pavlib/ ${PAV_BASE}/pavlib/
